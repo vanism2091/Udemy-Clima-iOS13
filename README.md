@@ -142,3 +142,34 @@ Color(Tint) 중 custom 말고 System, Label 등등이 붙은 거 선택하면 �
   - 이전 함수는 searchTextField < 특정한 UITextField 를 집었지만, 이번 함수에선 일반적인 param으로 받아온 textField 를 활용. 왜? 보편적인 기능이므로.
   - textField는 어디에서 오는가? 메소드를 trigger하는 textField가 들어간다.
   - 
+
+# Internal and External Parameter Names
+```swift
+// Defining the Function
+func myFunc(name inter: Type) {
+    print(inter)
+}
+            
+// Calling the Function
+myFunc(name: value)
+            
+// Defining the Function
+func myFunc2(_ inter: Type) {
+    print(inter)
+}
+            
+myFunc2(value)
+```
+            
+# 155. Method Naming Conventions and Error Handling
+    
+# 156. Updating the UI by Using the DispatchQueue
+UILabel.text must be used from main thread only
+그냥 함수 안에서 바로 label을 변경하면 앱 크래시
+https://developer.apple.com/documentation/xcode/diagnosing-memory-thread-and-crash-issues-early
+networking, 컴플리션 핸들러 등 같은 일들은 Background queue에서 일어남. 그래서 ui 이용하는 데 막힘 없게끔 하는거. 그런데 ui업데이트는 메인스레드에서 일어나야함. 그래야 끊김 없이 반응형 앱을 만들 수 있으니깐. 그래서 UI 업뎃 코드는 메인 큐에 넣어줘야함.
+```swift
+DispatchQueue.main.async {
+    // code...
+}
+```
